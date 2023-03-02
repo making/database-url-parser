@@ -68,11 +68,16 @@ public class DatabaseUrlParser {
 	}
 
 	public String getJdbcUrl() {
-		final String url = "jdbc:%s://%s:%d/%s".formatted(this.getJdbcScheme(), this.host, this.port, this.database);
-		if (this.query != null && !this.query.isBlank()) {
-			return "%s?%s".formatted(url, this.query);
+		final StringBuilder url = new StringBuilder();
+		url.append("jdbc:").append(this.getJdbcScheme()).append("://").append(this.host);
+		if (this.port > 0) {
+			url.append(":").append(this.port);
 		}
-		return url;
+		url.append("/").append(this.database);
+		if (this.query != null && !this.query.isBlank()) {
+			url.append("?").append(this.query);
+		}
+		return url.toString();
 	}
 
 }

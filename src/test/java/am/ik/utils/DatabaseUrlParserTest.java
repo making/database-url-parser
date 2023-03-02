@@ -22,4 +22,18 @@ class DatabaseUrlParserTest {
 			.isEqualTo("jdbc:postgresql://postgresql.example.com:5432/dbname?sslmode=disable");
 	}
 
+	@Test
+	void testNoPortNoQuery() {
+		final DatabaseUrlParser parser = new DatabaseUrlParser("postgres://foo:bar@floppy.db.elephantsql.com/demo");
+		assertThat(parser.getScheme()).isEqualTo("postgres");
+		assertThat(parser.getHost()).isEqualTo("floppy.db.elephantsql.com");
+		assertThat(parser.getPort()).isEqualTo(-1);
+		assertThat(parser.getDatabase()).isEqualTo("demo");
+		assertThat(parser.getUsername()).isEqualTo("foo");
+		assertThat(parser.getPassword()).isEqualTo("bar");
+		assertThat(parser.getQuery()).isNull();
+		assertThat(parser.getJdbcScheme()).isEqualTo("postgresql");
+		assertThat(parser.getJdbcUrl()).isEqualTo("jdbc:postgresql://floppy.db.elephantsql.com/demo");
+	}
+
 }
