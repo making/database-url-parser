@@ -2,10 +2,9 @@ package am.ik.utils.spring;
 
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 import am.ik.utils.DatabaseUrlParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor;
@@ -23,7 +22,7 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
 
 	public static final String SOURCE_NAME = "databaseUrlProperties";
 
-	private final Logger log = LoggerFactory.getLogger(DatabaseUrlEnvironmentPostProcessor.class);
+	private final Logger log = Logger.getLogger(DatabaseUrlEnvironmentPostProcessor.class.getName());
 
 	@Override
 	public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
@@ -31,7 +30,7 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
 		if (databaseUrl == null) {
 			return;
 		}
-		log.info("Detect '{}' environment variable", DATABASE_URL_KEY);
+		log.info(() -> "Detect '%s' environment variable".formatted(DATABASE_URL_KEY));
 		final DatabaseUrlParser urlParser = new DatabaseUrlParser(databaseUrl);
 		final Map<String, Object> properties = new TreeMap<>();
 		properties.put("spring.datasource.url", urlParser.getJdbcUrl());
