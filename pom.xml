@@ -6,7 +6,7 @@
 
 	<groupId>am.ik.util</groupId>
 	<artifactId>database-url-parser</artifactId>
-	<version>0.1.3-SNAPSHOT</version>
+	<version>0.1.3</version>
 	<name>database-url-parser</name>
 	<description>Parse DATABASE_URL and configure spring.datasource.*</description>
 
