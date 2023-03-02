@@ -32,7 +32,7 @@ class DatabaseUrlEnvironmentPostProcessorTest {
 		final PropertySource<?> propertySource = propertySources.get(SOURCE_NAME);
 		assertThat(propertySource).isNotNull();
 		assertThat(propertySource.getProperty("spring.datasource.url"))
-				.isEqualTo("jdbc:postgresql://postgresql.example.com:5432/dbname?sslmode=disable");
+			.isEqualTo("jdbc:postgresql://postgresql.example.com:5432/dbname?sslmode=disable");
 		assertThat(propertySource.getProperty("spring.datasource.username")).isEqualTo("username");
 		assertThat(propertySource.getProperty("spring.datasource.password")).isEqualTo("password");
 	}

@@ -19,7 +19,7 @@ class DatabaseUrlParserTest {
 		assertThat(parser.getQuery()).isEqualTo("sslmode=disable");
 		assertThat(parser.getJdbcScheme()).isEqualTo("postgresql");
 		assertThat(parser.getJdbcUrl())
-				.isEqualTo("jdbc:postgresql://postgresql.example.com:5432/dbname?sslmode=disable");
+			.isEqualTo("jdbc:postgresql://postgresql.example.com:5432/dbname?sslmode=disable");
 	}
 
 }
